@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ตัวอย่างการสร้างและเรียกใช้ API ด้วยคชสาร</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.kotchasan.com/js/gajax.js"></script>
+</head>
+
+<body>
+  <h1>ตัวอย่างการสร้างและเรียกใช้ API ด้วยคชสาร</h1>
+  <p>เวลาปัจจุบัน {RESULT} (อ่านจาก API ด้วย Curl)</p>
+  <p>URL สำหรับ API ตรงๆ <a href="api.php?method=getTime&amp;id={MKTIME}" target="_blank">api.php?method=getTime&amp;id={MKTIME}</a></p>
+  <!-- ฟอร์มสำหรับรับค่า เพื่อส่งไปโดย Ajax -->
+  <div>
+    <label for="demo_txt">เรียก API ด้วย Ajax</label>
+    <input type="text" id="demo_txt" value="{MKTIME}">
+    <button id="demo_send">Call API</button>
+  </div>
+  <!-- แสดงผลลัพท์ -->
+  <div id="demo_result"></div>
+  <script>
+    // button click
+    $G('demo_send').addEvent('click', function() {
+      // ข้อมูลสำหรับส่งไป
+      var q = 'method=getTime&id=' + $E('demo_txt').value;
+      // send Ajax
+      new GAjax({
+        method: 'get'
+      }).send('api.php', q, function(xhr) {
+        // ค่าตอบกลับ แปลงเป็น JSON
+        var ds = xhr.responseText.toJSON();
+        if (ds) {
+          if (ds.error) {
+            // ถ้ามีข้อผิดพลาด
+            alert(ds.error);
+          } else if (ds.result) {
+            // แสดงผลข้อมูลที่ส่งกลับ
+            $E('demo_result').innerHTML = ds.result;
+          }
+        } else if (xhr.responseText != '') {
+          // ข้อมูลที่ตอบกลับไม่ใช่ JSON
+          alert(xhr.responseText);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

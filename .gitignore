@@ -1,0 +1,8 @@
+# Kotchasan
+
+.vscode
+robots.txt
+datas/
+settings/*
+projects/test/
+/nbproject/private/

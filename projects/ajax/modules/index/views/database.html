@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ส่งข้อมูลไปบันทึกยังฐานข้อมูลด้วย Ajax</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.kotchasan.com/js/gajax.js"></script>
+  <link rel=stylesheet href="https://www.kotchasan.com/skin/gcss.css">
+</head>
+
+<body>
+  <header id="div_elem">
+    <h1 class="center margin-top-bottom">ส่งข้อมูลไปบันทึกยังฐานข้อมูลด้วย Ajax</h1>
+    <!-- ฟอร์มสำหรับรับค่า เพื่อส่งไปโดย Ajax -->
+    <div class="center margin-top-bottom">
+      <label for="demo_txt">ข้อมูลที่จะส่ง</label>
+      <input type="text" id="demo_txt" value="">
+      <button id="demo_send" class="button send" name="submit">Save</button>
+    </div>
+    <div class="center margin-bottom">
+      <p>อัปเดตอัตโนมัติเมื่อมีการคลิก Radio</p>
+      <label><input type="radio" name="test" value="1"> ตัวที่ 1</label>
+      <label><input type="radio" name="test" value="2"> ตัวที่ 2</label>
+      <label><input type="radio" name="test" value="3"> ตัวที่ 3</label>
+    </div>
+  </header>
+  <!-- แสดงผลลัพท์ -->
+  <div id="demo_result" class="center"></div>
+  <aside class='message'>ตัวอย่างนี้ต้องมีการกำหนดค่าฐานข้อมูลด้วย ดังนั้นก่อนการทดสอบตัวอย่างจะต้องแก้ไข settings/database.php ให้ตรงตามฐานข้อมูลที่มีอยู่ด้วย (ใช้ฐานข้อมุลใดก็ได้เนื่องจากสคริปต์ต้องการแค่การเชื่อมต่อฐานข้อมูล)</aside>
+  <script>
+    // ฟังก์ชั่นรับค่าจากการคลิก
+    var doClick = function(e) {
+      if (this.type == 'radio') {
+        // Radio
+        send(this.name + '=' + this.value);
+      } else {
+        // มาจากการกดปุ่ม
+        send('name=' + $E('demo_txt').value);
+      }
+    };
+    // ฟังก์ชั่นส่งข้อมูลด้วย Ajax
+    function send(q) {
+      // create GAjax
+      var req = new GAjax();
+      // กำหนดการแสดงรูปรอโหลดไปที่ปุ่มกด
+      req.initLoading('demo_txt');
+      // เรียกข้อมูลด้วย Ajax โดยการส่งค่า url ที่ต้องการไปยัง Index\Web\Model->save()
+      req.send('index.php/index/model/index/save', q, function(xhr) {
+        // แปลงข้อความที่ตอบกลับมาจาก Server เป็น JSON
+        var ds = xhr.responseText.toJSON();
+        if (ds) {
+          // ตรวจสอบค่าที่ส่งมา ถ้ามีให้ alert()
+          if (ds.error) {
+            // ข้อความแจ้งเตือน
+            alert(ds.error);
+            // highlight input ที่ error และส่งโฟกัสไปยัง input
+            $G('demo_txt').invalid().focus();
+          } else if (ds.sql) {
+            // เขียนคำสั่งเพื่อจัดการแสดงผล ผลลัพท์ที่ส่งกลับมา
+            var p = document.createElement('p');
+            p.innerHTML = ds.sql;
+            $E('demo_result').appendChild(p);
+          }
+        } else if (xhr.responseText != '') {
+          // ถ้าข้อมูลที่ส่งค่ากลับไม่ใช่ JSON และ ไม่ได้เป็นข้อมูลว่าง
+          alert(xhr.responseText)
+        }
+      });
+    }
+    // วนลูปอ่าน tag ทั้งหมดใน div_elem
+    forEach($G('div_elem').elems('*'), function() {
+      // ใช้ RegExp ตรวจสอบ name ของ tag ว่าเป็นรายการที่ต้องการหรือไม่ (test1-test4 และ submit)
+      if (/(submit|test)/.test(this.name)) {
+        // ถ้าใช่ตัวที่กำหนด ให้ดักจับอีเว้นต์ click
+        $G(this).addEvent('click', doClick);
+      }
+    });
+  </script>
+</body>
+
+</html>
