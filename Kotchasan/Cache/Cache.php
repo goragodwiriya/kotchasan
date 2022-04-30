@@ -38,13 +38,13 @@ abstract class Cache extends \Kotchasan\KBase implements CacheItemPoolInterface
      */
     public function commit()
     {
-        $cuccess = true;
+        $success = true;
         foreach ($this->deferred as $item) {
             if (!$this->save($item)) {
-                $cuccess = false;
+                $success = false;
             }
         }
-        return $cuccess;
+        return $success;
     }
 
     /**
