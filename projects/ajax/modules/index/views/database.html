@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Send Data to Database Using Ajax</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.kotchasan.com/js/gajax.js"></script>
+    <link rel=stylesheet href="https://www.kotchasan.com/skin/gcss.css">
+</head>
+
+<body>
+    <header id="div_elem">
+        <h1 class="center margin-top-bottom">Send Data to Database Using Ajax</h1>
+        <!-- Form for input data to be sent via Ajax -->
+        <div class="center margin-top-bottom">
+            <label for="demo_txt">Data to Send</label>
+            <input type="text" id="demo_txt" value="">
+            <button id="demo_send" class="button send" name="submit">Save</button>
+        </div>
+        <div class="center margin-bottom">
+            <p>Auto-update when clicking a radio button</p>
+            <label><input type="radio" name="test" value="1"> Option 1</label>
+            <label><input type="radio" name="test" value="2"> Option 2</label>
+            <label><input type="radio" name="test" value="3"> Option 3</label>
+        </div>
+    </header>
+    <!-- Display the result -->
+    <div id="demo_result" class="center"></div>
+    <aside class='message'>Before testing this example, you need to configure the database settings in the settings/database.php file according to your existing database (you can use any database as the script only requires a database connection).</aside>
+    <script>
+        // Function to handle click events
+        var handleClick = function(e) {
+            if (this.type == 'radio') {
+                // Radio button clicked
+                send(this.name + '=' + this.value);
+            } else {
+                // Button clicked
+                send('name=' + $E('demo_txt').value);
+            }
+        };
+
+        // Function to send data using Ajax
+        function send(q) {
+            // Create GAjax instance
+            var req = new GAjax();
+            // Show loading image on the send button
+            req.initLoading('demo_txt');
+            // Send Ajax request to the "index.php/index/model/index/save" URL with the provided data
+            req.send('index.php/index/model/index/save', q, function(xhr) {
+                // Convert the response text to JSON
+                var response = xhr.responseText.toJSON();
+                if (response) {
+                    // Check the response data
+                    if (response.error) {
+                        // Show error message
+                        alert(response.error);
+                        // Highlight and focus on the input field with the error
+                        $G('demo_txt').invalid().focus();
+                    } else if (response.sql) {
+                        // Manipulate and display the returned result
+                        var p = document.createElement('p');
+                        p.innerHTML = response.sql;
+                        $E('demo_result').appendChild(p);
+                    }
+                } else if (xhr.responseText != '') {
+                    // If the response is not JSON and not empty
+                    alert(xhr.responseText);
+                }
+            });
+        }
+
+        // Loop through all tags within the div_elem
+        forEach($G('div_elem').elems('*'), function() {
+            // Use RegExp to check if the tag's name matches the desired items (test1-test4 and submit)
+            if (/(submit|test)/.test(this.name)) {
+                // Attach the doClick function as a click event handler for the matching elements
+                $G(this).addEvent('click', handleClick);
+            }
+        });
+    </script>
+</body>
+
+</html>

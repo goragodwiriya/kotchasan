@@ -1,0 +1,13 @@
+# Kotchasan
+
+.vscode
+.git
+.phpdoc
+robots.txt
+datas/
+settings/*
+projects/test/
+nbproject/*
+documents.sh
+phpdocumenter.sh
+phpdoc.xml

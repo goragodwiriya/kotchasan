@@ -1,0 +1,22 @@
+{
+    "name": "goragodwiriya/kotchasan",
+    "description": "Kotchasan Web Framework",
+    "keywords": ["framework", "php", "kotchasan"],
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://www.kotchasan.com",
+    "authors": [{
+        "name": "Goragod Wiriya",
+        "homepage": "https://www.goragod.com",
+        "email": "admin@goragod.com"
+    }],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "files": ["Kotchasan/load.php"],
+        "psr-4": {
+            "": "Kotchasan/"
+        }
+    }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Example of Loading Web Pages Using Ajax</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.kotchasan.com/js/gajax.js"></script>
+    <link rel=stylesheet href="https://www.kotchasan.com/skin/gcss.css">
+    <style>
+        /* Loading image style */
+
+        #loading {
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: -100%;
+        }
+
+        #loading.wait {
+            background-image: url('loading.gif');
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Element for displaying loading image -->
+    <div id='loading'></div>
+    <header>
+        <h1 class="center margin-top-bottom">Example of Loading Web Pages Using Ajax</h1>
+        <!-- Form for input to be sent via Ajax -->
+        <div class="center margin-top-bottom">
+            <label for="demo_txt">URL</label>
+            <input type="text" id="demo_txt" value="https://www.kotchasan.com" placeholder="http://www.domain.tld">
+            <button id="demo_send" class="button send">Load</button>
+        </div>
+    </header>
+    <!-- Result display -->
+    <div id="demo_result"></div>
+    <script>
+        // Button click event
+        $G('demo_send').addEvent('click', function(e) {
+            // Data to be sent
+            var q = 'url=' + $E('demo_txt').value;
+            // Create GAjax object
+            var req = new GAjax();
+            // Set up loading image display in the center of the screen
+            req.initLoading('loading', true);
+            // Send Ajax request with the specified URL to Index\Web\Model->web()
+            req.send('index.php/index/model/index/web', q, function(xhr) {
+                // Insert the HTML received from Ajax into the div#demo_result to display the result
+                $E('demo_result').innerHTML = xhr.responseText;
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Example of Synchronizing Time Using Ajax</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.kotchasan.com/js/gajax.js"></script>
+    <script src="https://www.kotchasan.com/js/clock.js"></script>
+    <link rel=stylesheet href="https://www.kotchasan.com/skin/gcss.css">
+    <style>
+        /* Loading image style */
+
+        #loading {
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: -100%;
+        }
+
+        #loading.wait {
+            background-image: url('loading.gif');
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Element for displaying loading image -->
+    <div id='loading'></div>
+    <header>
+        <h1 class="center margin-top-bottom">Example of Synchronizing Time Using Ajax</h1>
+        <!-- Form to display time obtained from the server -->
+        <div class="center margin-top-bottom">
+            <input type="text" id="demo_txt" value="00:00:00">
+        </div>
+    </header>
+    <script>
+        // Function to fetch time data from the server using Ajax
+        new GAjax().initLoading('demo_txt').autoupdate('index.php/index/model/index/time', 60, null, function(xhr) {
+            $E('demo_txt').value = xhr.responseText;
+        });
+        // Start clock using JavaScript
+        new Clock('demo_txt');
+    </script>
+</body>
+
+</html>

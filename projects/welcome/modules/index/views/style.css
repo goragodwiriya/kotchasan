@@ -1,0 +1,181 @@
+html,
+body {
+  background: #fff;
+  height: 100%;
+  width: 100%;
+}
+.warper {
+  display: inline-block;
+  text-align: center;
+  height: 50%;
+}
+.warper::before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  width: 0px;
+}
+@-webkit-keyframes trunk {
+  0%,
+  100% {
+    border-radius: 0 0 100% 0;
+  }
+  50% {
+    border-radius: 0 0 70% 0;
+  }
+}
+@keyframes trunk {
+  0%,
+  100% {
+    border-radius: 0 0 100% 0;
+  }
+  50% {
+    border-radius: 0 0 70% 0;
+  }
+}
+@-webkit-keyframes head {
+  0%,
+  100% {
+    -webkit-transform: rotate(-348deg);
+    transform: rotate(-348deg);
+  }
+  50% {
+    -webkit-transform: rotate(-335deg);
+    transform: rotate(-335deg);
+  }
+}
+@keyframes head {
+  0%,
+  100% {
+    -webkit-transform: rotate(-348deg);
+    transform: rotate(-348deg);
+  }
+  50% {
+    -webkit-transform: rotate(-340deg);
+    transform: rotate(-340deg);
+  }
+}
+@-webkit-keyframes ear {
+  0%,
+  100% {
+    width: 50%;
+    box-shadow: 4px 3px 5px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 4px 3px 5px 2px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    width: 40%;
+    box-shadow: 7px 3px 5px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 7px 3px 10px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+@keyframes ear {
+  0%,
+  100% {
+    width: 50%;
+    box-shadow: 4px 3px 5px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 4px 3px 5px 2px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    width: 40%;
+    box-shadow: 7px 3px 5px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 7px 3px 10px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+.elephant {
+  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  background-color: transparent;
+  position: relative;
+}
+.elephant .head {
+  -webkit-transform: rotate(-348deg);
+  transform: rotate(-348deg);
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: #73bad8;
+  top: 17%;
+  left: 13%;
+  -webkit-animation: head 10s infinite;
+  animation: head 10s infinite;
+  border-radius: 50% 80% 50% 0;
+}
+.elephant .trunk {
+  width: 70%;
+  height: 70%;
+  background-color: #73bad8;
+  position: absolute;
+  top: 72%;
+  left: -48%;
+  border-radius: 0 0 100% 0;
+  -webkit-animation: trunk 10s infinite;
+  animation: trunk 10s infinite;
+}
+.elephant .trunk:after {
+  width: 70%;
+  height: 80%;
+  top: -1%;
+  left: -1%;
+  background-color: #fff;
+  border-radius: 0 0 100% 0;
+  -webkit-animation: trunk 10s infinite;
+  animation: trunk 10s infinite;
+}
+.elephant .ear {
+  background-color: #73bad8;
+  width: 50%;
+  height: 80%;
+  position: absolute;
+  left: 42%;
+  top: 0;
+  border-radius: 50% 80% 10% 30%;
+  box-shadow: 4px 3px 5px 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 4px 3px 5px 2px rgba(0, 0, 0, 0.1);
+  -webkit-animation: ear 5s infinite;
+  animation: ear 5s infinite;
+}
+.elephant .eye {
+  background-color: #fff;
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  border-radius: 100%;
+  top: 37%;
+  left: 18%;
+}
+.elephant .tail {
+  width: 5%;
+  height: 24%;
+  right: 0;
+  top: 34%;
+  border-radius: 50%;
+  background-color: #73bad8;
+  position: absolute;
+  -webkit-transform: rotate(153deg);
+  transform: rotate(153deg);
+}
+.elephant .body {
+  width: 70%;
+  height: 70%;
+  background: #73bad8;
+  position: absolute;
+  bottom: 10%;
+  left: 30%;
+  border-radius: 50% 50% 5% 5%;
+}
+.elephant .body:after {
+  background-color: #fff;
+  width: 20%;
+  height: 20%;
+  bottom: -1%;
+  left: 40%;
+  border-radius: 30% 30% 0 0;
+}
+.elephant .trunk:after,
+.elephant .body:after {
+  content: "";
+  display: block;
+  position: absolute;
+}

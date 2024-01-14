@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Example of Creating and Calling an API with Kotchasan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.kotchasan.com/js/gajax.js"></script>
+</head>
+
+<body>
+    <h1>Example of Creating and Calling an API with Kotchasan</h1>
+    <p>Current time: {RESULT} (retrieved from the API using Curl)</p>
+    <p>Direct API URL: <a href="api.php?method=getTime&amp;id={MKTIME}" target="_blank">api.php?method=getTime&amp;id={MKTIME}</a></p>
+    <!-- Form to input a value and send it via Ajax -->
+    <div>
+        <label for="demo_txt">Call API with Ajax</label>
+        <input type="text" id="demo_txt" value="{MKTIME}">
+        <button id="demo_send">Call API</button>
+    </div>
+    <!-- Display the result -->
+    <div id="demo_result"></div>
+    <script>
+        // Button click event
+        $G('demo_send').addEvent('click', function() {
+            // Data to send
+            var q = 'method=getTime&id=' + $E('demo_txt').value;
+            // Send Ajax request
+            new GAjax({
+                method: 'get'
+            }).send('api.php', q, function(xhr) {
+                // Parse the response as JSON
+                var ds = xhr.responseText.toJSON();
+                if (ds) {
+                    if (ds.error) {
+                        // If there is an error
+                        alert(ds.error);
+                    } else if (ds.result) {
+                        // Display the returned data
+                        $E('demo_result').innerHTML = ds.result;
+                    }
+                } else if (xhr.responseText != '') {
+                    // If the response is not JSON
+                    alert(xhr.responseText);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
