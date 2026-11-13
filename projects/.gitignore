@@ -1,0 +1,4 @@
+# Made by the examples while they run
+/*/datas/*
+!/*/datas/.htaccess
+/*/error_log.php

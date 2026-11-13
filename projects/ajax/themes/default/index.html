@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{WEBTITLE} · Kotchasan</title>
+<link rel="icon" href="../assets/kotchasan-vector.svg">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-endpoint="{ENDPOINT}" data-token="{TOKEN}">
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="../"><span class="logo-mark"><img src="../assets/kotchasan-vector.svg" alt="" width="64" height="64"></span>Kotchasan <small>ตัวอย่าง</small></a>
+    <nav class="nav"><a href="../?source=ajax">ดูซอร์สโค้ด</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <header class="page-head">
+    <span class="eyebrow">06 · Ajax</span>
+    <h1>Ajax ด้วย fetch()</h1>
+    <p class="lead">JavaScript เรียกเมธอดของ Controller ผ่าน URL แล้วรับคำตอบเป็น JSON ไม่ต้องโหลดหน้าใหม่ และไม่ใช้ไลบรารีภายนอก ทุกกล่องแสดงคำตอบจริงจากเซิร์ฟเวอร์ไว้ด้านล่าง</p>
+  </header>
+
+  <div class="split even">
+    <section class="card">
+      <div class="card-head">
+        <h2>นาฬิกาของเซิร์ฟเวอร์</h2>
+        <span class="badge badge-primary">GET</span>
+      </div>
+      <p class="clock" id="clock">--:--:--</p>
+      <p class="muted" id="clock-date">กดปุ่มเพื่อถามเวลาจากเซิร์ฟเวอร์</p>
+      <div class="actions">
+        <button class="btn" type="button" id="clock-button">ถามเวลา</button>
+        <label class="check"><input type="checkbox" id="clock-auto"> ถามทุก 5 วินาที</label>
+      </div>
+      <p class="small endpoint"><code>index.php/index/controller/ajax/time</code></p>
+      <pre class="output" id="clock-output" aria-live="polite">ยังไม่ได้เรียก</pre>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>ค้นหาจังหวัด</h2>
+        <span class="badge badge-primary">GET</span>
+      </div>
+      <div class="field">
+        <label for="province-q">พิมพ์ชื่อจังหวัด ไทยหรืออังกฤษ</label>
+        <input type="search" id="province-q" placeholder="เช่น เชียง หรือ khon" autocomplete="off">
+        <p class="hint">ค้นหาขณะพิมพ์ โดยรอให้หยุดพิมพ์ 250 มิลลิวินาทีก่อนส่ง</p>
+      </div>
+      <ul class="chips" id="province-list" aria-live="polite"></ul>
+      <p class="small endpoint"><code>index.php/index/controller/ajax/provinces?q=...</code></p>
+      <pre class="output" id="province-output">ยังไม่ได้เรียก</pre>
+    </section>
+  </div>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>ส่งความคิดเห็น</h2>
+      <span><span class="badge badge-success">POST</span> <span class="badge badge-primary">GET</span></span>
+    </div>
+    <div class="split even">
+      <form id="comment-form" novalidate>
+        <div class="field">
+          <label for="comment-name">ชื่อ</label>
+          <input type="text" id="comment-name" name="name" maxlength="50">
+          <p class="error-text" id="comment-name-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="comment-message">ความคิดเห็น</label>
+          <input type="text" id="comment-message" name="message" maxlength="200">
+          <p class="error-text" id="comment-message-error" hidden></p>
+        </div>
+        <button class="btn" type="submit">ส่ง</button>
+        <p class="hint">ส่งเป็น JSON พร้อม CSRF token ลองส่งทั้งที่ว่างเพื่อดูคำตอบ 422</p>
+      </form>
+      <div>
+        <h3>ความคิดเห็นล่าสุด</h3>
+        <ul class="comments" id="comment-list"><li class="muted">กำลังโหลด...</li></ul>
+      </div>
+    </div>
+    <p class="small endpoint"><code>index.php/index/controller/ajax/comments</code></p>
+    <pre class="output" id="comment-output">ยังไม่ได้เรียก</pre>
+  </section>
+
+  <section class="card">
+    <h2>ไฟล์ในตัวอย่างนี้</h2>
+    <ul class="files">
+      <li><code>index.php</code><span>ไฟล์ทางเข้าทั้งของหน้าเว็บและของการเรียก Ajax</span></li>
+      <li><code>modules/index/controllers/index.php</code><span>สร้างหน้านี้ พร้อม URL ของ endpoint และ CSRF token</span></li>
+      <li><code>modules/index/controllers/ajax.php</code><span>เมธอด <code>time()</code>, <code>provinces()</code> และ <code>comments()</code> ที่ตอบกลับเป็น JSON</span></li>
+      <li><code>themes/default/index.html</code><span>หน้านี้</span></li>
+      <li><code>themes/default/script.js</code><span>JavaScript ที่เรียก endpoint ด้วย <code>fetch()</code></span></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">Kotchasan {VERSION} · <a href="../">ตัวอย่างทั้งหมด</a></footer>
+<script src="{WEBURL}{SKIN}script.js"></script>
+</body>
+</html>

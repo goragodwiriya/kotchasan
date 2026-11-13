@@ -1,0 +1,5 @@
+# Pass the Authorization header (the Bearer token) to PHP.
+# Apache drops it before PHP when PHP runs through PHP-FPM or CGI.
+<IfModule mod_setenvif.c>
+  SetEnvIfNoCase ^Authorization$ "(.+)" HTTP_AUTHORIZATION=$1
+</IfModule>

@@ -1,0 +1,69 @@
+{
+    "name": "goragodwiriya/kotchasan",
+    "description": "Kotchasan Web Framework: a lightweight PHP MVC framework with a multi-database query builder, PSR-7 HTTP messages, templates, i18n and Thai utilities",
+    "type": "library",
+    "keywords": [
+        "framework",
+        "php",
+        "kotchasan",
+        "mvc",
+        "query-builder",
+        "psr-7",
+        "thai"
+    ],
+    "homepage": "https://www.kotchasan.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Goragod Wiriya",
+            "email": "admin@goragod.com",
+            "homepage": "https://www.goragod.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/goragodwiriya/kotchasan/issues",
+        "source": "https://github.com/goragodwiriya/kotchasan",
+        "docs": "https://www.kotchasan.com"
+    },
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*"
+    },
+    "suggest": {
+        "ext-pdo_mysql": "MySQL and MariaDB connections",
+        "ext-pdo_pgsql": "PostgreSQL connections",
+        "ext-pdo_sqlite": "SQLite connections",
+        "ext-pdo_sqlsrv": "SQL Server connections",
+        "ext-gd": "Kotchasan\\Image and Kotchasan\\Barcode",
+        "ext-fileinfo": "MIME type checks of uploaded files in Kotchasan\\Validator",
+        "ext-curl": "Kotchasan\\Curl",
+        "ext-openssl": "Kotchasan\\Password::encode() and decode()",
+        "ext-iconv": "Character set conversion in Kotchasan\\Csv and Kotchasan\\Email",
+        "ext-intl": "Internationalized domain names in Kotchasan\\Validator::email()",
+        "ext-exif": "Photo orientation in Kotchasan\\Image",
+        "ext-redis": "The redis query cache driver (CACHE_DRIVER = redis)",
+        "ext-zlib": "Compressed output from Request::initSession()"
+    },
+    "autoload": {
+        "files": [
+            "Kotchasan/load.php"
+        ],
+        "classmap": [
+            "Kotchasan/"
+        ],
+        "exclude-from-classmap": [
+            "Kotchasan/PHPMailer/",
+            "Kotchasan/Psr/Log/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "2.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

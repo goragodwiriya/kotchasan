@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{LANGUAGE}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{TITLE} · {WEBTITLE}</title>
+<meta name="description" content="{LNG_Coffee from Thai farms, roasted every week and brewed with care.}">
+<link rel="icon" href="../assets/kotchasan-vector.svg">
+<link rel="stylesheet" href="../assets/style.css">
+<!-- {WEBURL}{SKIN} is the URL of this theme folder: .../site/themes/default/ -->
+<link rel="stylesheet" href="{WEBURL}{SKIN}style.css">
+</head>
+<body>
+<div class="demo-bar">
+  <div class="container">
+    <a href="../">&larr; {LNG_All examples}</a>
+    <span>02 · {LNG_Website with templates}</span>
+    <a href="../?source=site">{LNG_View the source}</a>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="site-logo" href="index.php"><span class="logo-cup" aria-hidden="true">&#9749;</span>{WEBTITLE}</a>
+    <nav class="nav" aria-label="{LNG_Main menu}">{MENU}</nav>
+    <nav class="lang-switch" aria-label="{LNG_Language}">{LANGUAGES}</nav>
+  </div>
+</header>
+
+<main>
+{CONTENT}
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <b>{WEBTITLE}</b>
+      <p>{LNG_A coffee shop that exists only in this example.}</p>
+    </div>
+    <p class="small">&copy; {YEAR} · {LNG_Made with} <a href="https://www.kotchasan.com">Kotchasan</a> {VERSION}</p>
+  </div>
+</footer>
+</body>
+</html>

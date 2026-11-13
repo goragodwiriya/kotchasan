@@ -1,0 +1,34 @@
+<div class="split">
+  <section class="card">
+    <div class="member">
+      <span class="avatar" aria-hidden="true">{INITIAL}</span>
+      <div>
+        <h2>{NAME}</h2>
+        <p class="muted"><code>{USERNAME}</code> · <span class="badge {ROLE_CLASS}">{ROLE}</span></p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="table facts">
+        <tr><th scope="row">เข้าสู่ระบบเมื่อ</th><td>{LOGIN_AT}</td></tr>
+        <tr><th scope="row">Session ID</th><td><code>{SESSION}</code><br><span class="muted small">เปลี่ยนใหม่ทุกครั้งที่เข้าและออกจากระบบ</span></td></tr>
+      </table>
+    </div>
+    <form method="post" action="index.php" style="margin-top:20px">
+      <input type="hidden" name="token" value="{TOKEN}">
+      <input type="hidden" name="action" value="logout">
+      <button class="btn btn-secondary" type="submit">ออกจากระบบ</button>
+    </form>
+  </section>
+
+  <div>
+    {ADMIN}
+    <section class="card">
+      <h2>ตรวจสิทธิ์อย่างไร</h2>
+      <ol class="steps small">
+        <li><code>Auth::attempt()</code> ตรวจรหัสผ่านด้วย <code>Password::verify()</code></li>
+        <li><code>Auth::login()</code> เปลี่ยน session ID แล้วเก็บผู้ใช้ไว้ใน <code>$_SESSION</code></li>
+        <li>ทุกคำขอ Controller เรียก <code>Auth::user()</code> ไม่มีผู้ใช้ก็แสดงฟอร์มเข้าสู่ระบบ</li>
+      </ol>
+    </section>
+  </div>
+</div>
