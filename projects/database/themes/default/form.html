@@ -1,0 +1,30 @@
+<section class="card" id="product-form">
+  <h2>{FORM_TITLE}</h2>
+  <form method="post" action="{ACTION}#product-form" novalidate>
+    <input type="hidden" name="token" value="{TOKEN}">
+    <input type="hidden" name="action" value="save">
+    <input type="hidden" name="id" value="{ID}">
+
+    <div class="field">
+      <label for="name">ชื่อสินค้า</label>
+      <input type="text" id="name" name="name" value="{NAME}" maxlength="100" {NAME_INVALID}>
+      {NAME_ERROR}
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="price">ราคา (บาท)</label>
+        <input type="text" id="price" name="price" value="{PRICE}" inputmode="decimal" {PRICE_INVALID}>
+        {PRICE_ERROR}
+      </div>
+      <div class="field">
+        <label for="stock">คงเหลือ (ชิ้น)</label>
+        <input type="number" id="stock" name="stock" value="{STOCK}" min="0" step="1" {STOCK_INVALID}>
+        {STOCK_ERROR}
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" type="submit">{SUBMIT}</button>
+      {CANCEL}
+    </div>
+  </form>
+</section>

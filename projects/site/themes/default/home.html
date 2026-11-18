@@ -1,0 +1,41 @@
+<section class="site-hero">
+  <div class="container">
+    <p class="eyebrow">{LNG_Fresh roast every Monday}</p>
+    <h1>{LNG_Good coffee, slow mornings}</h1>
+    <p class="lead">{LNG_Coffee from Thai farms, roasted every week and brewed with care.}</p>
+    <p class="actions">
+      <a class="btn" href="index.php?module=drinks">{LNG_See our menu}</a>
+      <a class="btn btn-secondary" href="index.php?module=contact">{LNG_Find us}</a>
+    </p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="grid features">
+    <article class="card feature">
+      <span class="feature-icon" aria-hidden="true">&#127793;</span>
+      <h2>{LNG_Thai beans}</h2>
+      <p>{LNG_Arabica from small farms in the hills of Chiang Mai and Chiang Rai.}</p>
+    </article>
+    <article class="card feature">
+      <span class="feature-icon" aria-hidden="true">&#128293;</span>
+      <h2>{LNG_Roasted weekly}</h2>
+      <p>{LNG_We roast in small batches, so every cup is fresh.}</p>
+    </article>
+    <article class="card feature">
+      <span class="feature-icon" aria-hidden="true">&#129716;</span>
+      <h2>{LNG_A quiet place}</h2>
+      <p>{LNG_Good light, free Wi-Fi and a power socket at every table.}</p>
+    </article>
+  </div>
+
+  <section class="card how">
+    <h2>{LNG_How this website is built}</h2>
+    <ol class="steps">
+      <li><code>themes/default/index.html</code> {LNG_is the layout of every page: the header, the menu and the footer.}</li>
+      <li><code>themes/default/home.html</code> {LNG_is the content of this page. The controller puts it where the layout has} <code>&#123;CONTENT}</code>.</li>
+      <li><code>&#123;LNG_...}</code> {LNG_becomes the text of the current language, from} <code>language/th.php</code> {LNG_or} <code>language/en.php</code>.</li>
+      <li>{LNG_The menu and the TH / EN links are built in} <code>modules/index/controllers/index.php</code>.</li>
+    </ol>
+  </section>
+</div>

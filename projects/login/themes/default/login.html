@@ -1,0 +1,43 @@
+<div class="split">
+  <section class="card">
+    <h2>เข้าสู่ระบบ</h2>
+    <form method="post" action="index.php">
+      <input type="hidden" name="token" value="{TOKEN}">
+      <div class="field">
+        <label for="username">ชื่อผู้ใช้</label>
+        <input type="text" id="username" name="username" value="{USERNAME}" autocomplete="username" autocapitalize="none" required {FOCUS_USERNAME}>
+      </div>
+      <div class="field">
+        <label for="password">รหัสผ่าน</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required {FOCUS_PASSWORD}>
+      </div>
+      <button class="btn btn-block" type="submit">เข้าสู่ระบบ</button>
+    </form>
+  </section>
+
+  <aside class="card">
+    <h2>บัญชีทดลอง</h2>
+    <p class="muted small">กดปุ่มเพื่อกรอกให้ แล้วกด <b>เข้าสู่ระบบ</b></p>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>ชื่อผู้ใช้</th><th>รหัสผ่าน</th><th>สิทธิ์</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><code>admin</code></td><td><code>admin1234</code></td><td><span class="badge badge-primary">admin</span></td><td><button class="btn btn-sm btn-secondary" type="button" data-fill="admin:admin1234">กรอกให้</button></td></tr>
+          <tr><td><code>demo</code></td><td><code>demo1234</code></td><td><span class="badge badge-success">member</span></td><td><button class="btn btn-sm btn-secondary" type="button" data-fill="demo:demo1234">กรอกให้</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small">ใน <code>settings/config.php</code> ไม่มีรหัสผ่านตัวจริง มีแต่ hash จาก <code>Password::hash()</code> ซึ่งย้อนกลับเป็นรหัสผ่านไม่ได้</p>
+  </aside>
+</div>
+<script>
+// "กรอกให้" puts a demo account into the form
+document.querySelectorAll('[data-fill]').forEach(function (button) {
+  button.addEventListener('click', function () {
+    var account = button.getAttribute('data-fill').split(':');
+    document.getElementById('username').value = account[0];
+    document.getElementById('password').value = account[1];
+    document.getElementById('password').focus();
+  });
+});
+</script>

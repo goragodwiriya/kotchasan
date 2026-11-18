@@ -1,0 +1,38 @@
+<div class="stats">
+  <div class="stat"><b>{TOTAL}</b><span>สินค้าทั้งหมด</span></div>
+  <div class="stat"><b>{STOCK}</b><span>ชิ้นในคลัง</span></div>
+  <div class="stat"><b>{VALUE}</b><span>มูลค่าคงคลัง (บาท)</span></div>
+  <div class="stat"><b>{LOW}</b><span>ใกล้หมด (ต่ำกว่า 5 ชิ้น)</span></div>
+</div>
+
+<div class="split">
+  <section class="card">
+    <div class="card-head">
+      <h2>รายการสินค้า</h2>
+      <span class="muted small">{SUMMARY}</span>
+    </div>
+    <form class="toolbar" method="get" action="index.php" role="search">
+      <input type="search" name="q" value="{Q}" placeholder="ค้นหาชื่อสินค้า เช่น กาแฟ" aria-label="ค้นหา">
+      <select name="sort" aria-label="เรียงตาม">{SORTS}</select>
+      <button class="btn btn-secondary" type="submit">ค้นหา</button>
+    </form>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>สินค้า</th><th class="num">ราคา (บาท)</th><th class="num">คงเหลือ</th><th><span class="visually-hidden">จัดการ</span></th></tr>
+        </thead>
+        <tbody>{ROWS}</tbody>
+      </table>
+    </div>
+    {PAGINATION}
+  </section>
+
+  {FORM}
+</div>
+
+<section class="card">
+  <h2>SQL ที่ Query Builder สร้างสำหรับตารางด้านบน</h2>
+  <pre><code>{SQL}</code></pre>
+  <p class="small"><b>พารามิเตอร์:</b> {BINDINGS}</p>
+  <p class="muted small">คำที่ค้นหาถูกส่งให้ฐานข้อมูลแยกจากคำสั่ง SQL (ตรง <code>:qb_p0</code>) ไม่ได้ต่อเข้าไปในข้อความ SQL จึงไม่เกิด SQL injection ลองค้นหาด้วยคำว่า <code>' OR 1=1 --</code> ดูได้</p>
+</section>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{WEBTITLE} · Kotchasan</title>
+<link rel="icon" href="../assets/kotchasan-vector.svg">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-api="{API_URL}">
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="../"><span class="logo-mark"><img src="../assets/kotchasan-vector.svg" alt="" width="64" height="64"></span>Kotchasan <small>ตัวอย่าง</small></a>
+    <nav class="nav"><a href="api.php/v1/books">เปิด API</a><a href="../?source=api">ดูซอร์สโค้ด</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <header class="page-head">
+    <span class="eyebrow">07 · REST API</span>
+    <h1>REST API ด้วย ApiController</h1>
+    <p class="lead">API หนังสือที่อ่านได้ทุกคน และเพิ่ม แก้ไข ลบได้เมื่อส่ง Bearer token ทุกคำตอบเป็น JSON รูปแบบเดียวกัน กดปุ่ม <b>ลองเรียก</b> แล้วกด <b>ส่งคำขอ</b> ได้ทันที</p>
+  </header>
+
+  <section class="card">
+    <h2>Endpoint</h2>
+    <div class="table-wrap">
+      <table class="table endpoints">
+        <thead><tr><th>Method</th><th>URL</th><th>ทำอะไร</th><th>Token</th><th></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-primary">GET</span></td><td><code>api.php/v1/books</code></td>
+            <td>รายการหนังสือ ค้นหาด้วย <code>?q=</code> แบ่งหน้าด้วย <code>?page=</code></td><td class="muted">-</td>
+            <td><button class="btn btn-sm btn-secondary" type="button" data-try="GET" data-path="?q=">ลองเรียก</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-primary">GET</span></td><td><code>api.php/v1/books/1</code></td>
+            <td>หนังสือหนึ่งเล่ม</td><td class="muted">-</td>
+            <td><button class="btn btn-sm btn-secondary" type="button" data-try="GET" data-path="/1">ลองเรียก</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-success">POST</span></td><td><code>api.php/v1/books</code></td>
+            <td>เพิ่มหนังสือ ส่ง <code>title</code>, <code>author</code>, <code>price</code></td><td>ต้องใช้</td>
+            <td><button class="btn btn-sm btn-secondary" type="button" data-try="POST" data-path="" data-body='{"title": "เรียน PHP กับคชสาร", "author": "ทีมคชสาร", "price": 299}'>ลองเรียก</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-warning">PUT</span></td><td><code>api.php/v1/books/1</code></td>
+            <td>แก้ไขหนังสือ ส่งข้อมูลครบทุกช่อง</td><td>ต้องใช้</td>
+            <td><button class="btn btn-sm btn-secondary" type="button" data-try="PUT" data-path="/1" data-body='{"title": "สี่แผ่นดิน (ฉบับปกแข็ง)", "author": "ม.ร.ว.คึกฤทธิ์ ปราโมช", "price": 890}'>ลองเรียก</button></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-danger">DELETE</span></td><td><code>api.php/v1/books/1</code></td>
+            <td>ลบหนังสือ</td><td>ต้องใช้</td>
+            <td><button class="btn btn-sm btn-secondary" type="button" data-try="DELETE" data-path="/1">ลองเรียก</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="split">
+    <section class="card">
+      <h2>คำขอ</h2>
+      <form id="console">
+        <div class="row">
+          <div class="field field-method">
+            <label for="method">Method</label>
+            <select id="method">
+              <option>GET</option>
+              <option>POST</option>
+              <option>PUT</option>
+              <option>DELETE</option>
+            </select>
+          </div>
+          <div class="field field-url">
+            <label for="url">URL</label>
+            <input type="text" id="url" value="{API_URL}" spellcheck="false">
+          </div>
+        </div>
+        <div class="field">
+          <label class="check"><input type="checkbox" id="use-token"> ส่ง <code>Authorization: Bearer</code></label>
+          <input type="text" id="token" class="mono" value="{TOKEN}" aria-label="Token" spellcheck="false">
+          <p class="hint">มาจาก <code>api_tokens</code> ใน <code>settings/config.php</code> ลองเอาเครื่องหมายออกแล้วส่ง POST เพื่อดูคำตอบ 401</p>
+        </div>
+        <div class="field">
+          <label for="body">Body (JSON)</label>
+          <textarea id="body" rows="5" spellcheck="false" class="mono" placeholder="ใช้กับ POST และ PUT"></textarea>
+        </div>
+        <button class="btn" type="submit">ส่งคำขอ</button>
+      </form>
+      <h3 class="curl-title">คำสั่งเดียวกันด้วย curl</h3>
+      <pre id="curl"></pre>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>คำตอบ</h2>
+        <span id="status" class="badge">ยังไม่ได้ส่ง</span>
+      </div>
+      <pre class="response" id="response" aria-live="polite">กด "ส่งคำขอ" เพื่อดูคำตอบ</pre>
+      <p class="muted small">ทุกคำตอบมีคีย์เดียวกัน: <code>success</code>, <code>message</code>, <code>code</code>, <code>data</code>, <code>errors</code>, <code>request_id</code></p>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>ไฟล์ในตัวอย่างนี้</h2>
+    <ul class="files">
+      <li><code>api.php</code><span>ไฟล์ทางเข้าของ API</span></li>
+      <li><code>index.php</code><span>ไฟล์ทางเข้าของหน้านี้</span></li>
+      <li><code>.htaccess</code><span>ส่ง header Authorization ต่อให้ PHP บน Apache</span></li>
+      <li><code>settings/config.php</code><span><code>api_tokens</code> และ <code>api_ips</code> ที่ ApiController ต้องใช้</span></li>
+      <li><code>settings/database.php</code><span>SQLite ใน <code>datas/api.sqlite</code></span></li>
+      <li><code>modules/v1/controllers/books.php</code><span><code>V1\Books\Controller</code> รับทุก method และตรวจ token</span></li>
+      <li><code>modules/v1/models/books.php</code><span>สร้างตาราง ค้นหา เพิ่ม แก้ไข ลบ</span></li>
+      <li><code>themes/default/script.js</code><span>ส่งคำขอจากหน้านี้ด้วย <code>fetch()</code></span></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">Kotchasan {VERSION} · <a href="../">ตัวอย่างทั้งหมด</a></footer>
+<script src="{WEBURL}{SKIN}script.js"></script>
+</body>
+</html>

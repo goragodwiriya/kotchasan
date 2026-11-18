@@ -1,0 +1,16 @@
+<tr>
+  <td><b>{NAME}</b><br><span class="muted small">#{ID} · เพิ่มเมื่อ {CREATED}</span></td>
+  <td class="num">{PRICE}</td>
+  <td class="num">{STOCK}</td>
+  <td>
+    <div class="actions">
+      <a class="btn btn-sm btn-secondary" href="{EDIT_URL}#product-form">แก้ไข</a>
+      <form method="post" action="{ACTION}" data-confirm="ลบ &quot;{NAME}&quot; ?">
+        <input type="hidden" name="token" value="{TOKEN}">
+        <input type="hidden" name="action" value="delete">
+        <input type="hidden" name="id" value="{ID}">
+        <button class="btn btn-sm btn-danger" type="submit">ลบ</button>
+      </form>
+    </div>
+  </td>
+</tr>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{WEBTITLE} · Kotchasan</title>
+<link rel="icon" href="../assets/kotchasan-vector.svg">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="../"><span class="logo-mark"><img src="../assets/kotchasan-vector.svg" alt="" width="64" height="64"></span>Kotchasan <small>ตัวอย่าง</small></a>
+    <nav class="nav"><a href="index.php">รายการสินค้า</a><a href="../?source=database">ดูซอร์สโค้ด</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <header class="page-head">
+    <span class="eyebrow">04 · ฐานข้อมูล</span>
+    <h1>จัดการสินค้า (CRUD)</h1>
+    <p class="lead">เพิ่ม แก้ไข ลบ ค้นหา เรียงลำดับ และแบ่งหน้า บน SQLite ที่สร้างให้เองในการเปิดครั้งแรก ใช้ MySQL ได้โดยแก้ <code>settings/database.php</code> ไฟล์เดียว</p>
+  </header>
+
+  {ALERT}
+  {CONTENT}
+
+  <section class="card">
+    <h2>ไฟล์ในตัวอย่างนี้</h2>
+    <ul class="files">
+      <li><code>index.php</code><span>ไฟล์ทางเข้า กำหนด <code>DATA_FOLDER</code> แล้วโหลด Kotchasan</span></li>
+      <li><code>settings/database.php</code><span>การเชื่อมต่อฐานข้อมูล (SQLite หรือ MySQL) และ prefix ของตาราง</span></li>
+      <li><code>modules/index/controllers/index.php</code><span>Controller อ่านคำขอ ตรวจฟอร์ม แล้วเรียก Model</span></li>
+      <li><code>modules/index/models/product.php</code><span>Model สร้างตาราง ค้นหา เพิ่ม แก้ไข และลบ ด้วย Query Builder และ DB</span></li>
+      <li><code>modules/index/views/index.php</code><span>View แปลงข้อมูลเป็น HTML จาก template</span></li>
+      <li><code>themes/default/*.html</code><span>เลย์เอาต์ ตาราง แถว และฟอร์ม</span></li>
+      <li><code>datas/</code><span>ไฟล์ <code>database.sqlite</code> (ต้องเขียนได้ และไม่เปิดให้ดาวน์โหลด)</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">Kotchasan {VERSION} · <a href="../">ตัวอย่างทั้งหมด</a></footer>
+<script>
+// Forms with data-confirm ask before they are sent (deleting a product)
+document.addEventListener('submit', function (e) {
+  var message = e.target.getAttribute('data-confirm');
+  if (message && !window.confirm(message)) {
+    e.preventDefault();
+  }
+});
+</script>
+</body>
+</html>

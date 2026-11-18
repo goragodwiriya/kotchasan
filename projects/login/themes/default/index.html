@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{TITLE} · {WEBTITLE}</title>
+<link rel="icon" href="../assets/kotchasan-vector.svg">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="../"><span class="logo-mark"><img src="../assets/kotchasan-vector.svg" alt="" width="64" height="64"></span>Kotchasan <small>ตัวอย่าง</small></a>
+    <nav class="nav"><a href="../?source=login">ดูซอร์สโค้ด</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <header class="page-head">
+    <span class="eyebrow">05 · ระบบสมาชิก</span>
+    <h1>{TITLE}</h1>
+    <p class="lead">เข้าสู่ระบบด้วย session เก็บรหัสผ่านเป็น hash ด้วย <code>Kotchasan\Password</code> ป้องกัน CSRF ทุกฟอร์ม และแสดงเนื้อหาตามสิทธิ์ของผู้ใช้</p>
+  </header>
+
+  {ALERT}
+  {CONTENT}
+
+  <section class="card">
+    <h2>ไฟล์ในตัวอย่างนี้</h2>
+    <ul class="files">
+      <li><code>index.php</code><span>ไฟล์ทางเข้า โหลด Kotchasan แล้วเรียก Router</span></li>
+      <li><code>settings/config.php</code><span><code>password_key</code> และบัญชีผู้ใช้ที่เก็บเฉพาะ hash ของรหัสผ่าน</span></li>
+      <li><code>modules/index/controllers/index.php</code><span>รับฟอร์มเข้าสู่ระบบ/ออกจากระบบ และเลือกหน้าที่จะแสดง</span></li>
+      <li><code>modules/index/models/auth.php</code><span>ตรวจรหัสผ่าน และเก็บผู้ใช้ที่เข้าสู่ระบบไว้ใน session</span></li>
+      <li><code>themes/default/login.html</code><span>ฟอร์มเข้าสู่ระบบ</span></li>
+      <li><code>themes/default/member.html</code><span>หน้าสมาชิก</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">Kotchasan {VERSION} · <a href="../">ตัวอย่างทั้งหมด</a></footer>
+</body>
+</html>

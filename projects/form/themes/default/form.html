@@ -1,0 +1,64 @@
+<div class="split">
+  <section class="card">
+    <h2>ติดต่อเรา</h2>
+    <!-- novalidate turns the browser's own checks off, so you can see the server's -->
+    <form method="post" action="index.php" novalidate>
+      <input type="hidden" name="token" value="{TOKEN}">
+
+      <div class="row">
+        <div class="field">
+          <label for="name">ชื่อ-นามสกุล</label>
+          <input type="text" id="name" name="name" value="{NAME}" maxlength="100" autocomplete="name" {NAME_INVALID}>
+          {NAME_ERROR}
+        </div>
+        <div class="field">
+          <label for="email">อีเมล</label>
+          <input type="email" id="email" name="email" value="{EMAIL}" maxlength="255" autocomplete="email" {EMAIL_INVALID}>
+          {EMAIL_ERROR}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="phone">โทรศัพท์ <span class="optional">(ไม่บังคับ)</span></label>
+          <input type="tel" id="phone" name="phone" value="{PHONE}" maxlength="20" autocomplete="tel" {PHONE_INVALID}>
+          {PHONE_ERROR}
+        </div>
+        <div class="field">
+          <label for="topic">เรื่อง</label>
+          <select id="topic" name="topic" {TOPIC_INVALID}>{TOPICS}</select>
+          {TOPIC_ERROR}
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="message">ข้อความ</label>
+        <textarea id="message" name="message" rows="5" maxlength="1000" {MESSAGE_INVALID}>{MESSAGE}</textarea>
+        {MESSAGE_ERROR}
+      </div>
+
+      <div class="field">
+        <label class="check"><input type="checkbox" name="agree" value="1" {AGREE} {AGREE_INVALID}> ยินยอมให้ติดต่อกลับทางอีเมลหรือโทรศัพท์ที่ให้ไว้</label>
+        {AGREE_ERROR}
+      </div>
+
+      <button class="btn" type="submit">ส่งข้อความ</button>
+    </form>
+  </section>
+
+  <aside class="card">
+    <h2>ลองดู</h2>
+    <ol class="steps">
+      <li>กด <b>ส่งข้อความ</b> ทั้งที่ยังไม่กรอกอะไร ข้อความผิดพลาดจะขึ้นใต้ช่องที่ผิด</li>
+      <li>กรอกบางช่องผิด ค่าที่พิมพ์ไว้ยังอยู่ ไม่ต้องพิมพ์ใหม่ทั้งหมด</li>
+      <li>ส่งให้ผ่าน แล้วกด <kbd>F5</kbd> ข้อความจะไม่ถูกส่งซ้ำ เพราะหน้านั้นมาจากการ redirect</li>
+    </ol>
+    <h3>คลาสที่ใช้</h3>
+    <ul class="small">
+      <li><code>$request->post('name')->topic()</code> อ่านค่าและตัด HTML ออก</li>
+      <li><code>$request->generateCsrfToken()</code> และ <code>Request::validateCsrfToken()</code></li>
+      <li><code>Validator::required()</code>, <code>email()</code>, <code>phone()</code>, <code>inList()</code></li>
+      <li><code>Response::redirect($url, 303)</code> สำหรับ Post/Redirect/Get</li>
+    </ul>
+  </aside>
+</div>

@@ -1,0 +1,26 @@
+<div class="split">
+  <section class="card">
+    <h2>ข้อมูลที่ได้รับ</h2>
+    <div class="table-wrap">
+      <table class="table facts">
+        <tr><th scope="row">ชื่อ</th><td>{NAME}</td></tr>
+        <tr><th scope="row">อีเมล</th><td>{EMAIL}</td></tr>
+        <tr><th scope="row">โทรศัพท์</th><td>{PHONE}</td></tr>
+        <tr><th scope="row">เรื่อง</th><td>{TOPIC}</td></tr>
+        <tr><th scope="row">ข้อความ</th><td>{MESSAGE}</td></tr>
+        <tr><th scope="row">เวลาที่ส่ง</th><td>{TIME}</td></tr>
+      </table>
+    </div>
+    <p class="actions" style="margin-top:20px"><a class="btn" href="index.php">ส่งข้อความใหม่</a></p>
+  </section>
+
+  <aside class="card">
+    <h2>เกิดอะไรขึ้น</h2>
+    <ol class="steps">
+      <li>ฟอร์มส่งข้อมูลแบบ POST มาที่ <code>index.php</code> พร้อม CSRF token</li>
+      <li>Controller ตรวจ token และข้อมูลทุกช่อง ผ่านแล้วเก็บข้อมูลไว้ใน <code>$_SESSION</code></li>
+      <li>ตอบกลับด้วย redirect 303 ให้เบราว์เซอร์เปิด <code>index.php</code> ใหม่แบบ GET</li>
+      <li>หน้านี้แสดงข้อมูลจาก session หนึ่งครั้งแล้วลบทิ้ง กดรีเฟรชจึงกลับไปเป็นฟอร์มเปล่า</li>
+    </ol>
+  </aside>
+</div>

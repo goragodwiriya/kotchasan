@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{TITLE} · {WEBTITLE}</title>
+<link rel="icon" href="../assets/kotchasan-vector.svg">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="../"><span class="logo-mark"><img src="../assets/kotchasan-vector.svg" alt="" width="64" height="64"></span>Kotchasan <small>ตัวอย่าง</small></a>
+    <nav class="nav"><a href="index.php">ฟอร์มใหม่</a><a href="../?source=form">ดูซอร์สโค้ด</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <header class="page-head">
+    <span class="eyebrow">03 · ฟอร์ม</span>
+    <h1>ฟอร์มและการตรวจข้อมูล</h1>
+    <p class="lead">ฟอร์มติดต่อที่ตรวจข้อมูลฝั่งเซิร์ฟเวอร์ทุกช่อง ป้องกันการส่งข้ามเว็บด้วย CSRF token จำค่าที่พิมพ์ไว้เมื่อมีข้อผิดพลาด และไม่ส่งซ้ำเมื่อกดรีเฟรช</p>
+  </header>
+
+  {ALERT}
+  {CONTENT}
+
+  <section class="card">
+    <h2>ไฟล์ในตัวอย่างนี้</h2>
+    <ul class="files">
+      <li><code>index.php</code><span>ไฟล์ทางเข้า โหลด Kotchasan แล้วเรียก Router</span></li>
+      <li><code>settings/config.php</code><span>ชื่อเว็บและธีม อ่านได้จาก <code>self::$cfg</code></span></li>
+      <li><code>modules/index/controllers/index.php</code><span>รับฟอร์ม ตรวจข้อมูล และ redirect เมื่อสำเร็จ</span></li>
+      <li><code>themes/default/index.html</code><span>เลย์เอาต์ของหน้า</span></li>
+      <li><code>themes/default/form.html</code><span>ฟอร์ม มีตำแหน่งข้อความผิดพลาดของแต่ละช่อง</span></li>
+      <li><code>themes/default/thanks.html</code><span>หน้าที่แสดงหลังส่งสำเร็จ</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="footer">Kotchasan {VERSION} · <a href="../">ตัวอย่างทั้งหมด</a></footer>
+</body>
+</html>
